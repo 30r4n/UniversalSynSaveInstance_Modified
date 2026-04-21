@@ -1624,12 +1624,24 @@ do
 		MeshPart = { InitialSize = "MeshSize" },
 		PartOperation = {
 			InitialSize = "MeshSize",
-			
+
 			ChildData = function(instance)
-				return getgenv().gethiddenproperty_local(instance,"ChildData")
+				local raw = getgenv().gethiddenproperty_local(instance,"ChildData")
+
+				if string.len(raw) > 0 then
+					return raw
+				else
+					return getgenv().gethiddenproperty_local(instance,"ChildData2")
+				end
 			end,
 			MeshData = function(instance)
-				return getgenv().gethiddenproperty_local(instance,"MeshData")
+				local raw = getgenv().gethiddenproperty_local(instance,"MeshData")
+
+				if string.len(raw) > 0 then
+					return raw
+				else
+					return getgenv().gethiddenproperty_local(instance,"MeshData2")
+				end
 			end,
 			PhysicsData = function(instance)
 				return getgenv().gethiddenproperty_local(instance,"PhysicsData")
