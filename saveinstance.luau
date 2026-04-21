@@ -3,6 +3,10 @@
 --!divine-intellect
 -- https://discord.gg/wx4ThpAsmw
 
+if gethiddenproperty then
+	getgenv().gethiddenproperty_local = gethiddenproperty
+end
+
 local function string_find(s, pattern, init)
 	return string.find(s, pattern, init, true)
 end
@@ -1607,11 +1611,11 @@ do
 			end,
 
 			PhysicsGrid = function(instance)
-				return instance:gethiddenproperty(game.Workspace.Terrain,"PhysicsGrid")
+				return getgenv().gethiddenproperty_local(instance,"PhysicsGrid")
 			end,
 
 			SmoothGrid = function(instance)
-				return instance:gethiddenproperty(game.Workspace.Terrain,"SmoothGrid")
+				return getgenv().gethiddenproperty_local(instance,"SmoothGrid")
 			end
 		},
 		TriangleMeshPart = {
