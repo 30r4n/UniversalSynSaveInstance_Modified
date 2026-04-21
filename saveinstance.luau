@@ -1610,7 +1610,12 @@ do
 			FluidFidelityInternal = "FluidFidelity",
 		},
 		MeshPart = { InitialSize = "MeshSize" },
-		PartOperation = { InitialSize = "MeshSize" },
+		PartOperation = {
+			InitialSize = "MeshSize",
+			ChildDataBinaryString = "ChildData",
+			MeshDataBinaryString = "MeshData",
+			PhysicsDataBinaryString = "PhysicsData",
+		},
 		Part = { shape = "Shape" },
 		TrussPart = { style = "Style" },
 		FormFactorPart = {
