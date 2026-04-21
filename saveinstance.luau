@@ -3243,6 +3243,7 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 			Item = Item ..
 						'<BinaryString name="AeroMeshData">'..base64encode(getgenv().gethiddenproperty_local(instance,"AeroMeshData"))..'</BinaryString>' ..
 						'<BinaryString name="PhysicalConfigData">'..base64encode(getgenv().gethiddenproperty_local(instance,"PhysicalConfigData"))..'</BinaryString>'
+						'<BinaryString name="SolidMeshHolder">'..base64encode(getgenv().gethiddenproperty_local(instance,"SolidMeshHolder"))..'</BinaryString>'
 		end
 		return Item
 	end
