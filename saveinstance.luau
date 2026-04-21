@@ -1605,6 +1605,10 @@ do
 
 				return buffer.tostring(b)
 			end,
+
+			PhysicsGrid = function(instance)
+				return gethiddenproperty(instance,"PhysicsGrid")
+			end
 		},
 		TriangleMeshPart = {
 			FluidFidelityInternal = "FluidFidelity",
