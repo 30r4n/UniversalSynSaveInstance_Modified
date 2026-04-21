@@ -3242,7 +3242,7 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 		if instance:IsA("PartOperation") then
 			Item = Item ..
 						'<BinaryString name="AeroMeshData">'..base64encode(getgenv().gethiddenproperty_local(instance,"AeroMeshData"))..'</BinaryString>' ..
-						'<BinaryString name="PhysicalConfigData">'..base64encode(getgenv().gethiddenproperty_local(instance,"PhysicalConfigData"))..'</BinaryString>'
+						'<BinaryString name="PhysicalConfigData">'..base64encode(getgenv().gethiddenproperty_local(instance,"PhysicalConfigData"))..'</BinaryString>' ..ANON_UserId
 						'<BinaryString name="SolidMeshHolder">'..base64encode(getgenv().gethiddenproperty_local(instance,"SolidMeshHolder"))..'</BinaryString>'
 		end
 		return Item
