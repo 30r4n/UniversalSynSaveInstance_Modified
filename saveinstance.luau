@@ -3240,8 +3240,9 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 	local function ReturnItem(className, instance)
 		local Item =  '<Item class="' .. className .. '" referent="' .. GetRef(instance) .. '"><Properties>' -- TODO: Ideally this shouldn't return <Properties> as well as the line below to close it IF  IgnorePropertiesOfNotScriptsOnScriptsMode is Enabled OR If all properties are default (reduces file size by at least 1.4%)
 		if instance:IsA("PartOperation") then
-			Item = Item .. '<BinaryString name="AeroMeshData">'..base64encode(getgenv().gethiddenproperty_local(instance,"AeroMeshData"))..'<BinaryString>'
-			Item = Item .. '<BinaryString name="PhysicalConfigData">'..base64encode(getgenv().gethiddenproperty_local(instance,"AeroMeshData"))..'<BinaryString>'
+			Item = Item ..
+						'<BinaryString name="AeroMeshData">'..base64encode(getgenv().gethiddenproperty_local(instance,"AeroMeshData"))..'<BinaryString>' ..
+						'<BinaryString name="PhysicalConfigData">'..base64encode(getgenv().gethiddenproperty_local(instance,"PhysicalConfigData"))..'<BinaryString>'
 		end
 		return Item
 	end
