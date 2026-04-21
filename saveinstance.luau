@@ -1646,6 +1646,14 @@ do
 			PhysicsData = function(instance)
 				return getgenv().gethiddenproperty_local(instance,"PhysicsData")
 			end,
+
+			AeroMeshData = function(instance)
+				return getgenv().gethiddenproperty_local(instance,"AeroMeshData")
+			end,
+
+			PhysicalConfigData = function(instance)
+				return getgenv().gethiddenproperty_local(instance,"PhysicalConfigData")
+			end,
 		},
 		Part = { shape = "Shape" },
 		TrussPart = { style = "Style" },
@@ -3230,7 +3238,12 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 	end
 
 	local function ReturnItem(className, instance)
-		return '<Item class="' .. className .. '" referent="' .. GetRef(instance) .. '"><Properties>' -- TODO: Ideally this shouldn't return <Properties> as well as the line below to close it IF  IgnorePropertiesOfNotScriptsOnScriptsMode is Enabled OR If all properties are default (reduces file size by at least 1.4%)
+		local Item =  '<Item class="' .. className .. '" referent="' .. GetRef(instance) .. '"><Properties>' -- TODO: Ideally this shouldn't return <Properties> as well as the line below to close it IF  IgnorePropertiesOfNotScriptsOnScriptsMode is Enabled OR If all properties are default (reduces file size by at least 1.4%)
+		if instance:IsA("PartOperation") then
+			Item = Item .. '<BinaryString name="AeroMeshData">'..base64encode(getgenv().gethiddenproperty_local(instance,"AeroMeshData"))..'<BinaryString>'
+			Item = Item .. '<BinaryString name="PhysicalConfigData">'..base64encode(getgenv().gethiddenproperty_local(instance,"AeroMeshData"))..'<BinaryString>'
+		end
+		return Item
 	end
 
 	local function ReturnProperty(tag, propertyName, value)
