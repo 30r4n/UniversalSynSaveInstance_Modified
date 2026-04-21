@@ -1624,9 +1624,16 @@ do
 		MeshPart = { InitialSize = "MeshSize" },
 		PartOperation = {
 			InitialSize = "MeshSize",
-			ChildDataBinaryString = "ChildData",
-			MeshDataBinaryString = "MeshData",
-			PhysicsDataBinaryString = "PhysicsData",
+			
+			ChildData = function(instance)
+				return getgenv().gethiddenproperty_local(instance,"ChildData")
+			end,
+			MeshData = function(instance)
+				return getgenv().gethiddenproperty_local(instance,"MeshData")
+			end,
+			PhysicsData = function(instance)
+				return getgenv().gethiddenproperty_local(instance,"PhysicsData")
+			end,
 		},
 		Part = { shape = "Shape" },
 		TrussPart = { style = "Style" },
