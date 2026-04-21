@@ -1646,14 +1646,6 @@ do
 			PhysicsData = function(instance)
 				return getgenv().gethiddenproperty_local(instance,"PhysicsData")
 			end,
-
-			AeroMeshData = function(instance)
-				return getgenv().gethiddenproperty_local(instance,"AeroMeshData")
-			end,
-
-			PhysicalConfigData = function(instance)
-				return getgenv().gethiddenproperty_local(instance,"PhysicalConfigData")
-			end,
 		},
 		Part = { shape = "Shape" },
 		TrussPart = { style = "Style" },
