@@ -1607,11 +1607,11 @@ do
 			end,
 
 			PhysicsGrid = function(instance)
-				return gethiddenproperty(game.Workspace.Terrain,"PhysicsGrid")
+				return instance:gethiddenproperty(game.Workspace.Terrain,"PhysicsGrid")
 			end,
 
 			SmoothGrid = function(instance)
-				return gethiddenproperty(game.Workspace.Terrain,"SmoothGrid")
+				return instance:gethiddenproperty(game.Workspace.Terrain,"SmoothGrid")
 			end
 		},
 		TriangleMeshPart = {
