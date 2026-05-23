@@ -13,7 +13,7 @@ local function getServerVersion()
 	if rawVersion == "?" then
 		displayVersion = "DEBUG_SERVER"
 	else
-		if runService:IsStudio() then
+		if game:GetService('RunService'):IsStudio() then
 			displayVersion = "ROBLOX Studio"
 		else
 			displayVersion = rawVersion
