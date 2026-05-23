@@ -7,6 +7,21 @@ if gethiddenproperty then
 	getgenv().gethiddenproperty_local = gethiddenproperty
 end
 
+local function getServerVersion()
+	local rawVersion = game:GetService('RunService'):GetRobloxVersion()
+	local displayVersion
+	if rawVersion == "?" then
+		displayVersion = "DEBUG_SERVER"
+	else
+		if runService:IsStudio() then
+			displayVersion = "ROBLOX Studio"
+		else
+			displayVersion = rawVersion
+		end
+	end
+	return displayVersion
+end
+
 local function string_find(s, pattern, init)
 	return string.find(s, pattern, init, true)
 end
@@ -3364,11 +3379,6 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 
 	local function ReturnItem(className, instance)
 		local Item =  '<Item class="' .. className .. '" referent="' .. GetRef(instance) .. '"><Properties>' -- TODO: Ideally this shouldn't return <Properties> as well as the line below to close it IF  IgnorePropertiesOfNotScriptsOnScriptsMode is Enabled OR If all properties are default (reduces file size by at least 1.4%)
-		if instance:IsA("PartOperation") then
-			Item = Item ..
-						'<BinaryString name="AeroMeshData">'..base64encode(getgenv().gethiddenproperty_local(instance,"AeroMeshData"))..'</BinaryString>'
-						--'<BinaryString name="PhysicalConfigData">'..base64encode(getgenv().gethiddenproperty_local(instance,"PhysicalConfigData"))..'</BinaryString>'
-		end
 		return Item
 	end
 
@@ -3985,6 +3995,7 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 						RecoveredScripts
 					) .. "\n" or "")
 					.. [[
+		Modded
 		Thank you for using UniversalSynSaveInstance (Join to Copy Games) https://discord.gg/wx4ThpAsmw.
 
 		If you didn't save in Binary (rbxl) - it's recommended to save the game right away to take advantage of the binary format & to preserve values of certain properties if you used IgnoreDefaultProperties setting (as they might change in the future).
@@ -4024,12 +4035,16 @@ local function synsaveinstance(CustomOptions, CustomOptions2)
 					.. os.clock() - elapse_t
 					.. " Date (UTC): "
 					.. DateTime.now():FormatUniversalTime("LL LTS", "en-gb")
+					.. " UniverseId: "
+					.. game.GameId
 					.. " PlaceId: "
 					.. game.PlaceId
 					.. " PlaceVersion: "
 					.. game.PlaceVersion
 					.. " Client Version: "
 					.. FULL_VERSION
+					.. " Server Version: "
+					.. getServerVersion()
 					.. " Platform: "
 					.. (
 						select(
